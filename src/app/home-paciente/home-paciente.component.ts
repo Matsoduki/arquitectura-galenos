@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../services/auth.service';
 import { Router } from '@angular/router';
 import { PacienteService } from '../services/paciente.service';
@@ -11,26 +11,27 @@ import { IonicModule } from '@ionic/angular';
   standalone: true,
   imports: [IonicModule]
 })
-export class HomePacienteComponent {
-  user: any = null; // Aquí almacenarás la información del paciente
-  loading: boolean = true; // Para mostrar un estado de carga
+export class HomePacienteComponent implements OnInit {
+  user: any = null; // Información del paciente
+  loading: boolean = true; // Estado de carga
 
   constructor(
     private authService: AuthService,
     private router: Router,
     private pacienteService: PacienteService
-  ) {
-    this.getUserDetails();
+  ) {}
+
+  ngOnInit() {
+    this.getUserDetails(); // Cargar los detalles del usuario al iniciar el componente
   }
 
   async getUserDetails() {
     const userId = this.authService.getCurrentUserId(); // Obtener el ID del usuario actual
     if (userId) {
       try {
-        // Obtener todos los pacientes y filtrar por userId
-        const pacientes = await this.pacienteService.obtenerPacientes();
+        const pacientes = await this.pacienteService.obtenerPacientes(); // Obtener todos los pacientes
         this.user = pacientes.find(paciente => paciente.userId === userId); // Buscar el paciente correspondiente
-  
+
         if (this.user) {
           console.log('Datos del usuario:', this.user);
         } else {
@@ -48,7 +49,7 @@ export class HomePacienteComponent {
   }
 
   logout() {
-    this.authService.logout();
+    this.authService.logout(); // Lógica para cerrar sesión
     this.router.navigate(['/login']); // Redirigir al login
   }
 }

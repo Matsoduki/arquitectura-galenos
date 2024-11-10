@@ -1,0 +1,35 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Agendar Cita</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Selecciona Médico y Horario</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-item>
+        <ion-label>Selecciona Médico</ion-label>
+        <ion-select [(ngModel)]="selectedMedico">
+          <ion-select-option *ngFor="let medico of medicos" [value]="medico.id">
+            {{ medico.nombre }} {{ medico.apellido }}
+          </ion-select-option>
+        </ion-select>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Fecha</ion-label>
+        <ion-datetime [(ngModel)]="fecha" display-format="MMM DD, YYYY"></ion-datetime>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Hora</ion-label>
+        <ion-datetime [(ngModel)]="hora" display-format="h:mm A" picker-format="h:mm A" minute-values="0,15,30,45"></ion-datetime>
+      </ion-item>
+
+      <ion-button expand="full" (click)="agendarCita()">Agendar Cita</ion-button>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

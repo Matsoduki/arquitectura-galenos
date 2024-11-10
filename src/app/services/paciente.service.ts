@@ -40,4 +40,7 @@ export class PacienteService {
     const pacienteDoc = doc(this.firestore, 'pacientes', id);
     await deleteDoc(pacienteDoc); // Elimina el documento del paciente
   }
+
+
+  
 }

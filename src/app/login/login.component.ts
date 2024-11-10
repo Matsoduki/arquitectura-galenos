@@ -26,7 +26,7 @@ export class LoginComponent {
       const { email, password } = this.loginForm.value;
       const success = await this.authService.login(email, password);
       if (success) {
-        this.router.navigate(['/home']); // Asegúrate de que esta ruta apunte al Home del Paciente
+        this.router.navigate(['/home-paciente']); // Asegúrate de que esta ruta apunte al Home del Paciente
       } else {
         alert('Credenciales incorrectas. Intenta de nuevo.');
       }
