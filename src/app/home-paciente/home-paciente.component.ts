@@ -27,9 +27,12 @@ export class HomePacienteComponent {
     const userId = this.authService.getCurrentUserId(); // Obtener el ID del usuario actual
     if (userId) {
       try {
-        this.user = await this.pacienteService.obtenerPacientePorId(userId); // Obtener datos del paciente por ID
+        // Obtener todos los pacientes y filtrar por userId
+        const pacientes = await this.pacienteService.obtenerPacientes();
+        this.user = pacientes.find(paciente => paciente.userId === userId); // Buscar el paciente correspondiente
+  
         if (this.user) {
-          console.log('Datos del usuario:', this.user); // Verifica que el usuario se carga correctamente
+          console.log('Datos del usuario:', this.user);
         } else {
           console.warn('No se encontró un paciente con ese ID.');
         }
@@ -39,7 +42,7 @@ export class HomePacienteComponent {
         this.loading = false; // Ocultar el estado de carga
       }
     } else {
-      console.warn('No hay usuario autenticado'); // Agrega un mensaje de advertencia
+      console.warn('No hay usuario autenticado');
       this.loading = false; // Ocultar el estado de carga si no hay ID
     }
   }

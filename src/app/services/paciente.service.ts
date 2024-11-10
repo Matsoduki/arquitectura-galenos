@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Firestore, collection, addDoc, getDocs, deleteDoc, doc, getDoc } from '@angular/fire/firestore';
 import { Paciente } from '../models/paciente.model';
+import { AuthService } from './auth.service'; // Importar AuthService
 
 @Injectable({
   providedIn: 'root'
@@ -8,11 +9,13 @@ import { Paciente } from '../models/paciente.model';
 export class PacienteService {
   private pacientesRef = collection(this.firestore, 'pacientes');
 
-  constructor(private firestore: Firestore) {}
+  constructor(private firestore: Firestore, private authService: AuthService) {} // Inyectar AuthService
 
   // Agregar un nuevo paciente
   async agregarPaciente(paciente: Paciente): Promise<string> {
-    const docRef = await addDoc(this.pacientesRef, paciente);
+    // Obtener el userId del usuario autenticado y agregarlo al paciente
+    const userId = this.authService.getCurrentUserId();
+    const docRef = await addDoc(this.pacientesRef, { ...paciente, userId });
     return docRef.id; // Devuelve el ID del nuevo paciente
   }
 

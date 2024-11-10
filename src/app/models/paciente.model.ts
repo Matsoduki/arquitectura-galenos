@@ -6,5 +6,5 @@ export interface Paciente {
   telefono: string;
   email: string;
   direccion?: string; // Opcional
-  contraseña: string; // Nuevo campo para la contraseña
+  userId?: string; // Campo para almacenar el ID del usuario
 }
