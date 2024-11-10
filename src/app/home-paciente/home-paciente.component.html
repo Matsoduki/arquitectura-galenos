@@ -1,0 +1,32 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Bienvenido, {{ user?.nombre }} {{ user?.apellido }}</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="logout()">Cerrar Sesión</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Opciones para el Paciente</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-list>
+        <ion-item routerLink="/perfil" detail="false">
+          Ver Perfil
+        </ion-item>
+        <ion-item routerLink="/citas" detail="false">
+          Agendar Cita
+        </ion-item>
+        <ion-item routerLink="/historial" detail="false">
+          Ver Historial Médico
+        </ion-item>
+        <ion-item routerLink="/consultas" detail="false">
+          Consultas Médicas
+        </ion-item>
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
+</ion-content>
