@@ -1,0 +1,50 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Perfil</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-card *ngIf="!loading">
+    <ion-card-header>
+      <ion-card-title>Mis Datos</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-item>
+        <ion-label position="floating">Nombre</ion-label>
+        <ion-input [(ngModel)]="user.nombre" type="text"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Apellido</ion-label>
+        <ion-input [(ngModel)]="user.apellido" type="text"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Email</ion-label>
+        <ion-input [(ngModel)]="user.email" type="email"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Teléfono</ion-label>
+        <ion-input [(ngModel)]="user.telefono" type="tel"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Dirección</ion-label>
+        <ion-input [(ngModel)]="user.direccion" type="text"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Fecha de Nacimiento</ion-label>
+        <ion-datetime [(ngModel)]="user.fechaNacimiento" display-format="MMM DD, YYYY"></ion-datetime>
+      </ion-item>
+
+      <ion-button expand="full" (click)="updateProfile()">Actualizar Perfil</ion-button>
+
+      <ion-text color="danger" *ngIf="errorMessage">{{ errorMessage }}</ion-text>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-spinner *ngIf="loading"></ion-spinner>
+</ion-content>

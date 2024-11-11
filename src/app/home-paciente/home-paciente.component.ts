@@ -52,4 +52,13 @@ export class HomePacienteComponent implements OnInit {
     this.authService.logout(); // Lógica para cerrar sesión
     this.router.navigate(['/login']); // Redirigir al login
   }
+
+  navigateToAgendarCita() {
+    this.router.navigate(['/agendar-cita']);
+  }
+
+  navigateToPerfil() {
+    this.router.navigate(['/perfil']); // Navega a la página de perfil
+  }
+
 }
