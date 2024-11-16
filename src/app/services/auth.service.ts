@@ -1,5 +1,11 @@
 import { Injectable } from '@angular/core';
-import { Auth, signInWithEmailAndPassword, createUserWithEmailAndPassword, onAuthStateChanged, User } from '@angular/fire/auth';
+import {
+  Auth,
+  signInWithEmailAndPassword,
+  createUserWithEmailAndPassword,
+  onAuthStateChanged,
+  User
+} from '@angular/fire/auth';
 
 @Injectable({
   providedIn: 'root'
@@ -14,6 +20,7 @@ export class AuthService {
     });
   }
 
+  // Método genérico de login
   async login(email: string, password: string): Promise<boolean> {
     try {
       await signInWithEmailAndPassword(this.auth, email, password);
@@ -22,6 +29,12 @@ export class AuthService {
       console.error('Error al iniciar sesión:', error);
       return false; // Login fallido
     }
+  }
+
+  // Método específico para login de médicos
+  async loginMedico(email: string, password: string): Promise<boolean> {
+    // Aquí podrías agregar lógica adicional para verificar si el usuario es un médico
+    return this.login(email, password); // Reutiliza el método de login
   }
 
   async register(email: string, password: string): Promise<boolean> {
@@ -42,5 +55,10 @@ export class AuthService {
   // Método para obtener el ID del usuario actual
   getCurrentUserId(): string | null {
     return this.currentUser ? this.currentUser.uid : null;
+  }
+
+  // Método para obtener el usuario actual
+  getCurrentUser(): User | null {
+    return this.currentUser;
   }
 }

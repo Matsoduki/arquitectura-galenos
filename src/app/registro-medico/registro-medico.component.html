@@ -1,0 +1,54 @@
+<meta name="mobile-web-app-capable" content="yes">
+
+<ion-content>
+  <form [formGroup]="registroForm" (ngSubmit)="onSubmit()">
+    <ion-item>
+      <ion-label position="floating">RUT</ion-label>
+      <ion-input type="text" formControlName="rut" required></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Nombre</ion-label>
+      <ion-input type="text" formControlName="nombre" required></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Apellido</ion-label>
+      <ion-input type="text" formControlName="apellido" required></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Correo Electrónico</ion-label>
+      <ion-input type="email" formControlName="correo" required></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Especialidad</ion-label>
+      <ion-select formControlName="especialidad" required>
+        <ion-select-option value="" disabled>Seleccione una especialidad</ion-select-option>
+        <ion-select-option value="Medicina General">Medicina General</ion-select-option>
+        <ion-select-option value="Kinesiología">Kinesiología</ion-select-option>
+        <ion-select-option value="Oftalmología">Oftalmología</ion-select-option>
+        <ion-select-option value="Otorrinolaringología">Otorrinolaringología</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Clave Secreta</ion-label>
+      <ion-input [type]="showPassword ? 'text' : 'password'" formControlName="claveSecreta" required></ion-input>
+      <ion-button slot="end" (click)="showPassword = !showPassword">
+        <ion-icon [name]="showPassword ? 'eye-off' : 'eye'"></ion-icon>
+      </ion-button>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Contraseña</ion-label>
+      <ion-input [type]="showPassword2 ? 'text' : 'password'" formControlName="contraseña" required></ion-input>
+      <ion-button slot="end" (click)="showPassword2 = !showPassword2">
+        <ion-icon [name]="showPassword2 ? 'eye-off' : 'eye'"></ion-icon>
+      </ion-button>
+    </ion-item>
+
+    <ion-button expand="full" type="submit" [disabled]="registroForm.invalid">Registrar Médico</ion-button>
+  </form>
+</ion-content>
